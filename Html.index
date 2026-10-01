@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>მაპატიე ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    color:white;
+
+    background:
+        radial-gradient(circle at 50% 15%,#641f4d,transparent 35%),
+        linear-gradient(160deg,#09000d,#31051f,#120014);
+}
+
+/* ================= წვიმა ================= */
+
+.rain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+}
+
+.drop{
+    position:absolute;
+    top:-80px;
+    width:2px;
+    height:70px;
+
+    background:rgba(190,215,255,.45);
+
+    transform:rotate(12deg);
+
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(12deg);
+    }
+}
+
+/* ================= მთავარი ================= */
+
+.container{
+    height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    position:relative;
+    z-index:5;
+}
+
+.card{
+    width:100%;
+    max-width:560px;
+    max-height:92vh;
+
+    overflow:auto;
+
+    padding:30px 22px;
+
+    text-align:center;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.09);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    backdrop-filter:blur(16px);
+
+    box-shadow:
+        0 0 70px rgba(255,40,130,.3);
+}
+
+/* ================= კატა ================= */
+
+.kitty{
+    font-size:85px;
+
+    animation:sadkitty 2s infinite;
+}
+
+@keyframes sadkitty{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+h1{
+    margin:5px;
+
+    font-size:52px;
+
+    color:#ff8faf;
+
+    text-shadow:
+        0 0 20px #ff477e;
+}
+
+.subtitle{
+    color:#ffd9e5;
+
+    line-height:1.7;
+}
+
+/* ================= წერილი ================= */
+
+.message{
+    margin:25px 0;
+
+    color:#ffe8ef;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+/* ================= მუსიკა ================= */
+
+.musicBox{
+    margin:20px 0;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    background:rgba(0,0,0,.2);
+}
+
+.musicTitle{
+    color:#ff9ab8;
+
+    margin-bottom:8px;
+}
+
+/* ================= ღილაკი ================= */
+
+button{
+    border:0;
+
+    border-radius:50px;
+
+    padding:15px 28px;
+
+    margin:8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff3975,
+            #ff8cac
+        );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px rgba(255,50,120,.35);
+
+    transition:.25s;
+}
+
+button:hover{
+    transform:scale(1.07);
+}
+
+/* ================= წერილი ================= */
+
+.letter{
+    display:none;
+
+    margin-top:20px;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    background:rgba(0,0,0,.2);
+
+    animation:show .7s ease;
+}
+
+@keyframes show{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.letter h2{
+    color:#ff91b3;
+}
+
+.letter p{
+    line-height:2;
+
+    color:#ffe3eb;
+}
+
+/* ================= გული ================= */
+
+.heart{
+    position:fixed;
+
+    bottom:-50px;
+
+    z-index:50;
+
+    pointer-events:none;
+
+    animation:heart 4s linear forwards;
+}
+
+@keyframes heart{
+    to{
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* ================= ფინალი ================= */
+
+.final{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    background:
+        radial-gradient(
+            circle,
+            #420b32,
+            #080008
+        );
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+.finalContent{
+    animation:show 1s ease;
+}
+
+.finalContent h2{
+    font-size:55px;
+
+    color:#ff82a8;
+
+    text-shadow:
+        0 0 25px #ff477e;
+}
+
+.finalContent p{
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#ffe0ea;
+}
+
+.big{
+    font-size:90px;
+}
+
+/* ================= მუსიკის ღილაკი ================= */
+
+.soundButton{
+    position:fixed;
+
+    top:15px;
+    right:15px;
+
+    z-index:200;
+
+    width:48px;
+    height:48px;
+
+    padding:0;
+
+    margin:0;
+
+    border-radius:50%;
+
+    background:rgba(255,80,140,.3);
+
+    backdrop-filter:blur(10px);
+
+    font-size:22px;
+}
+
+/* ================= მობილური ================= */
+
+@media(max-width:500px){
+
+    h1{
+        font-size:42px;
+    }
+
+    .kitty{
+        font-size:70px;
+    }
+
+    .card{
+        padding:25px 16px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= წვიმა ================= -->
+
+<div class="rain" id="rain"></div>
+
+
+<!-- ================= მუსიკის კონტროლი ================= -->
+
+<button
+    class="soundButton"
+    id="soundButton"
+    onclick="toggleSound()">
+
+    🔇
+
+</button>
+
+
+<!-- ================= მთავარი ================= -->
+
+<div class="container">
+
+<div class="card">
+
+
+    <div class="kitty">
+        😿🎀
+    </div>
+
+
+    <h1>
+        მაპატიე ❤️
+    </h1>
+
+
+    <div class="subtitle">
+
+        ვიცი, რომ ნაწყენი ხარ ჩემზე... 🥺
+
+        <br>
+
+        ამიტომ ეს პატარა რაღაც შენთვის გავაკეთე.
+
+    </div>
+
+
+    <div class="message">
+
+        ზოგჯერ ერთი პატარა შეცდომა საკმარისია,
+        რომ საყვარელი ადამიანი გავანაწყენოთ...
+
+        <br><br>
+
+        მაგრამ არ მინდა,
+        რომ დიდხანს იყო ჩემზე ნაწყენი.
+
+        <br><br>
+
+        ამიტომ გთხოვ...
+        ბოლომდე ნახე. ❤️
+
+    </div>
+
+
+    <!-- ================= მუსიკა ================= -->
+
+    <div class="musicBox">
+
+        <div class="musicTitle">
+
+            🎵 სევდიანი საღამოს მუსიკა
+
+        </div>
+
+        <div>
+
+            გვერდზე შესვლისას მუსიკა მზადაა.
+            <br>
+
+            ეკრანს ერთხელ დააჭირე,
+            რომ ხმა ჩაირთოს. ❤️
+
+        </div>
+
+    </div>
+
+
+    <button onclick="openLetter()">
+
+        💌 გახსენი წერილი
+
+    </button>
+
+
+    <!-- ================= წერილი ================= -->
+
+    <div
+        class="letter"
+        id="letter">
+
+
+        <h2>
+
+            შენთან ერთი სათქმელი მაქვს... 🥺
+
+        </h2>
+
+
+        <p>
+
+            ვიცი, რომ გაწყენინე.
+
+            <br><br>
+
+            შეიძლება სიტყვებით ვერ გამოვასწორო
+            ყველაფერი, მაგრამ მართლა ვწუხვარ.
+
+            <br><br>
+
+            არ მინდა ჩვენს შორის წყენა იყოს.
+
+            <br><br>
+
+            შენ ჩემთვის ძალიან მნიშვნელოვანი ხარ
+            და უბრალოდ მინდა ისევ გაგიღიმო. ❤️
+
+            <br><br>
+
+            ამიტომ...
+
+            <br><br>
+
+            <b>
+                მოდი შევრიგდეთ. 🥺❤️
+            </b>
+
+        </p>
+
+
+        <button onclick="yes()">
+
+            კი, შევრიგდეთ ❤️
+
+        </button>
+
+
+        <button
+            id="no"
+            onclick="nope()">
+
+            ჯერ არა 🥺
+
+        </button>
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- ================= საბოლოო ეკრანი ================= -->
+
+<div
+    class="final"
+    id="final">
+
+
+    <div class="finalContent">
+
+
+        <div class="big">
+
+            🐱🎀❤️
+
+        </div>
+
+
+        <h2>
+
+            იეეეეე! 🥹
+
+        </h2>
+
+
+        <p>
+
+            Kitty აღარ ტირის. ❤️
+
+            <br><br>
+
+            მადლობა, რომ მაპატიე.
+
+            <br><br>
+
+            ახლა ჩახუტება გეკუთვნის. 🫂
+
+        </p>
+
+
+        <div class="big">
+
+            ❤️🌹❤️
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   წვიმის შექმნა
+===================================================== */
+
+const rain =
+    document.getElementById("rain");
+
+for(let i=0;i<80;i++){
+
+    const drop =
+        document.createElement("div");
+
+    drop.className="drop";
+
+    drop.style.left =
+        Math.random()*100+"vw";
+
+    drop.style.animationDuration =
+        (.5+Math.random()*1)+"s";
+
+    drop.style.animationDelay =
+        Math.random()*2+"s";
+
+    rain.appendChild(drop);
+}
+
+
+/* =====================================================
+   სევდიანი ფონური მუსიკა
+===================================================== */
+
+/*
+   მუსიკა გენერირდება პირდაპირ ბრაუზერში.
+
+   ამიტომ MP3 ფაილი საერთოდ არ არის საჭირო.
+
+   თავიდან ხმა გამორთულია,
+   რადგან ბრაუზერი ავტომატურ ხმას ბლოკავს.
+
+   ეკრანზე პირველი დაჭერისას ხმა ჩაირთვება.
+*/
+
+let audioContext;
+let masterGain;
+let musicStarted=false;
+let oscillators=[];
+
+
+/* მუსიკის შექმნა */
+
+function startSadMusic(){
+
+    if(musicStarted) return;
+
+    musicStarted=true;
+
+    audioContext =
+        new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+
+    masterGain =
+        audioContext.createGain();
+
+    masterGain.gain.value=0.08;
+
+    masterGain.connect(
+        audioContext.destination
+    );
+
+
+    /*
+       ძალიან მშვიდი დაბალი მელოდია
+    */
+
+    const notes=[
+        261.63,
+        233.08,
+        196.00,
+        174.61,
+        196.00,
+        233.08
+    ];
+
+    let index=0;
+
+
+    function playNote(){
+
+        if(!musicStarted) return;
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type="sine";
+
+        oscillator.frequency.value =
+            notes[index];
+
+
+        gain.gain.setValueAtTime(
+            0,
+            audioContext.currentTime
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0.5,
+            audioContext.currentTime+0.5
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0,
+            audioContext.currentTime+3
+        );
+
+
+        oscillator.connect(gain);
+
+        gain.connect(masterGain);
+
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime+3
+        );
+
+
+        index++;
+
+        if(index>=notes.length){
+            index=0;
+        }
+
+
+        setTimeout(
+            playNote,
+            1800
+        );
+    }
+
+
+    playNote();
+}
+
+
+/* =====================================================
+   ხმა ON / OFF
+===================================================== */
+
+let soundOn=false;
+
+
+function toggleSound(){
+
+    if(!audioContext){
+
+        startSadMusic();
+
+        soundOn=true;
+
+        document.getElementById(
+            "soundButton"
+        ).innerText="🔊";
+
+        return;
+    }
+
+
+    if(soundOn){
+
+        masterGain.gain.value=0;
+
+        soundOn=false;
+
+        document.getElementById(
+            "soundButton"
+        ).innerText="🔇";
+
+    }else{
+
+        masterGain.gain.value=.08;
+
+        soundOn=true;
+
+        document.getElementById(
+            "soundButton"
+        ).innerText="🔊";
+    }
+}
+
+
+/*
+   ეკრანზე პირველი დაჭერისას
+   ავტომატურად ჩავრთოთ მუსიკა
+*/
+
+document.addEventListener(
+    "click",
+    function(){
+
+        if(!musicStarted){
+
+            startSadMusic();
+
+            soundOn=true;
+
+            document.getElementById(
+                "soundButton"
+            ).innerText="🔊";
+        }
+
+    },
+    {once:true}
+);
+
+
+/* =====================================================
+   წერილის გახსნა
+===================================================== */
+
+function openLetter(){
+
+    document.getElementById(
+        "letter"
+    ).style.display="block";
+
+
+    createHearts(30);
+
+
+    document.getElementById(
+        "letter"
+    ).scrollIntoView({
+
+        behavior:"smooth"
+
+    });
+}
+
+
+/* =====================================================
+   გულები
+===================================================== */
+
+function createHearts(number){
+
+    for(let i=0;i<number;i++){
+
+        setTimeout(()=>{
+
+            const heart =
+                document.createElement("div");
+
+
+            heart.className="heart";
+
+
+            const icons=[
+                "❤️",
+                "💗",
+                "💖",
+                "💕",
+                "🌹",
+                "🥺"
+            ];
+
+
+            heart.innerText =
+                icons[
+                    Math.floor(
+                        Math.random()*icons.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random()*100+"vw";
+
+
+            heart.style.fontSize =
+                (18+Math.random()*30)+"px";
+
+
+            heart.style.animationDuration =
+                (3+Math.random()*3)+"s";
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(()=>{
+
+                heart.remove();
+
+            },6000);
+
+
+        },i*60);
+    }
+}
+
+
+/* =====================================================
+   არა ღილაკი
+===================================================== */
+
+function nope(){
+
+    const button =
+        document.getElementById("no");
+
+
+    button.style.position="fixed";
+
+
+    button.style.left =
+        Math.random()*70+10+"%";
+
+
+    button.style.top =
+        Math.random()*70+10+"%";
+
+
+    button.innerText =
+        "კიდევ იფიქრე 🥺";
+}
+
+
+/* =====================================================
+   კი ❤️
+===================================================== */
+
+function yes(){
+
+    createHearts(150);
+
+
+    document.getElementById(
+        "final"
+    ).style.display="flex";
+
+
+    if(masterGain){
+
+        masterGain.gain.value=.12;
+
+    }
+}
+
+</script>
+
+</body>
+</html>
